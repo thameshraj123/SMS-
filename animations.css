@@ -1,0 +1,186 @@
+/* ==========================================================================
+   SVMS CONSTRUCTIONS - Animations & Scroll Reveal
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Scroll Reveal Base Classes
+   -------------------------------------------------------------------------- */
+.reveal {
+  opacity: 0;
+  transition-duration: 0.85s;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+/* Fade Up (Default) */
+.reveal-up {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.reveal-up.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Fade Down */
+.reveal-down {
+  opacity: 0;
+  transform: translateY(-40px);
+}
+
+.reveal-down.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Fade Left (Coming from left to right) */
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-50px);
+}
+
+.reveal-left.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Fade Right (Coming from right to left) */
+.reveal-right {
+  opacity: 0;
+  transform: translateX(50px);
+}
+
+.reveal-right.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Zoom In */
+.reveal-zoom {
+  opacity: 0;
+  transform: scale(0.88);
+}
+
+.reveal-zoom.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Skew Reveal (Special for About cards) */
+.reveal-skew {
+  opacity: 0;
+  transform: skewX(-12deg) translateY(50px);
+}
+
+.reveal-skew.active {
+  opacity: 1;
+  transform: skewX(-12deg) translateY(0);
+}
+
+/* --------------------------------------------------------------------------
+   Stagger Delays
+   -------------------------------------------------------------------------- */
+.delay-100 { transition-delay: 0.1s; }
+.delay-200 { transition-delay: 0.2s; }
+.delay-300 { transition-delay: 0.3s; }
+.delay-400 { transition-delay: 0.4s; }
+.delay-500 { transition-delay: 0.5s; }
+.delay-600 { transition-delay: 0.6s; }
+
+/* --------------------------------------------------------------------------
+   Keyframe Animations
+   -------------------------------------------------------------------------- */
+
+/* Subtle Floating Effect for Hero Badge & Art */
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: floatSlow 4.5s ease-in-out infinite;
+}
+
+/* Pulse Glow for CTA & Highlights */
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(243, 110, 33, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 16px rgba(243, 110, 33, 0);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 2.5s infinite;
+}
+
+/* Subtle Shimmer across buttons */
+.btn-primary, .btn-cta-contact {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::after, .btn-cta-contact::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    rgba(255, 255, 255, 0) 20%,
+    rgba(255, 255, 255, 0.35) 50%,
+    rgba(255, 255, 255, 0) 80%
+  );
+  transform: rotate(25deg);
+  transition: all 0.75s ease;
+}
+
+.btn-primary:hover::after, .btn-cta-contact:hover::after {
+  left: 130%;
+}
+
+/* Subtle Ripple Effect on button click */
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: rippleEffect 0.6s linear;
+  background-color: rgba(255, 255, 255, 0.4);
+  pointer-events: none;
+}
+
+@keyframes rippleEffect {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* Halo rotation around child portrait */
+@keyframes rotateSlow {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.halo-rotate {
+  animation: rotateSlow 20s linear infinite;
+}
+
+/* Counter Roll Animation */
+.counter-number {
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+  transition: all 0.4s ease;
+}
